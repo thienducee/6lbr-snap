@@ -1,3 +1,0 @@
-ifneq ($(WITH_COAPSERVER),0)
-PROJECT_SOURCEFILES+=cc2538dk-resources.c
-endif

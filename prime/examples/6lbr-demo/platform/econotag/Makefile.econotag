@@ -1,3 +1,0 @@
-ifneq ($(WITH_COAPSERVER),0)
-PROJECT_SOURCEFILES+=econotag-resources.c
-endif

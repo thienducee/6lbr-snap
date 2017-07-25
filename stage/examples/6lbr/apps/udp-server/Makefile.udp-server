@@ -1,2 +1,0 @@
-CFLAGS += -DUDPSERVER=1
-udp-server_src = udp-server.c 

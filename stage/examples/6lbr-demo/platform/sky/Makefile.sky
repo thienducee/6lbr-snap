@@ -1,4 +1,0 @@
-ifneq ($(WITH_COAPSERVER),0)
-RESOURCES+=photo solar
-PROJECT_SOURCEFILES+=sky-resources.c
-endif

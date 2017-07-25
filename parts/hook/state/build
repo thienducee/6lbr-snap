@@ -1,9 +1,0 @@
-!BuildState
-project_options: {deb_arch: amd64}
-properties:
-  after: []
-  build-attributes: []
-  build-packages: []
-  disable-parallel: false
-  organize: {}
-schema_properties: []

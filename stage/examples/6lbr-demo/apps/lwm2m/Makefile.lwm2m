@@ -1,3 +1,0 @@
-CFLAGS+=-DWITH_LWM2M=1
-
-lwm2m_src = lwm2m.c lwm2m-device-object.c
