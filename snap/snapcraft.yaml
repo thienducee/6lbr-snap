@@ -1,0 +1,39 @@
+name: 6lbr # you probably want to 'snapcraft register <name>'
+version: 1.5 # just for humans, typically '1.2+git' or '1.3.2'
+summary: 6LBR is a deployment-ready platform for interconnecting IP and 6LoWPAN # 79 char long summary
+description: |
+  CETIC 6LBR is an 6LoWPAN/RPL Border Router solution. 
+  6LBR can work as stand-alone router on embedded hardware or on a Linux host.  
+  6LBR is designed for flexibility, it can be configured to support various network topologies while smartly interconnecting the WSNs with the IP world.
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+
+apps:
+  6lbr:
+    command: etc/init.d/6lbr /snap/6lbr/current/etc/6lbr/6lbr.conf start
+    plugs: [network, network-bind]
+
+parts:
+  main:
+    plugin: make
+    source: .
+    build: |
+      cd examples/6lbr
+      make all
+      make plugins
+      make tools
+    install: |
+      cd examples/6lbr 
+      make install DESTDIR=$SNAPCRAFT_PART_INSTALL
+      make plugins-install DESTDIR=$SNAPCRAFT_PART_INSTALL
+      cp 6lbr.conf $SNAPCRAFT_PART_INSTALL/etc/6lbr
+    build-packages: 
+      - gcc 
+      - bridge-utils
+      - libncurses5-dev
+  hook:
+    plugin: dump
+    install: |
+      install -d -m755 $SNAPCRAFT_PART_INSTALL/snap/hooks
+      install -m755 wrapper $SNAPCRAFT_PART_INSTALL/snap/hooks/configure
